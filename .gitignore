@@ -2,3 +2,4 @@
 pyspark_testing.egg-info/
 .python-version
 *.pyc
+dist/
