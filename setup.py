@@ -13,10 +13,7 @@ def readme():
     with open('README.md') as f:
         return f.read()
 
-install_requires = [
-    'six>=1.5',
-]
-
+install_requires = []
 lint_requires = [
     'pep8',
     'pyflakes'
