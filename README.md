@@ -1,9 +1,9 @@
 Testing with PySpark is a pain, so let's make it a little easier by example.
 
-[![Build Status](https://travis-ci.org/msukmanowsky/pyspark-testing.svg?branch=master)](https://travis-ci.org/msukmanowsky/pyspark-testing)
-
 This project serves as an example of some good practices to follow when
 developing and testing PySpark applications/driver scripts.
+
+[![Build Status](https://travis-ci.org/msukmanowsky/pyspark-testing.svg?branch=master)](https://travis-ci.org/msukmanowsky/pyspark-testing)
 
 ## Tip 1: Use Python packages
 
