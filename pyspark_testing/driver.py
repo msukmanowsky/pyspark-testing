@@ -16,7 +16,7 @@ from pyspark_testing.models import BroadbandCoverageInfo
 
 
 def data_path():
-    resource_path = os.path.join('data', 'National_Broadband_Data_March2012_Eng.csv')
+    resource_path = os.path.join('data', 'National_Broadband_Data_March2012_Eng.csv.gz')
     return pkg_resources.resource_filename('pyspark_testing', resource_path)
 
 
@@ -38,6 +38,7 @@ def summary_stats(data):
                 yield ('{}_unavailable'.format(k), 1)
 
     return data.flatMap(stats_gen).foldByKey(0, add).collectAsMap()
+
 
 def main():
     '''
