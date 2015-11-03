@@ -25,17 +25,17 @@ def safe_convert(string):
     return string
 
 
-def unicode_csv_reader(unicode_csv_data, **kwargs):
+def unicode_csv_reader(unicode_csv_data, encoding='latin_1', **kwargs):
     def encoder():
         for line in unicode_csv_data:
             try:
-                yield line.encode('latin_1')
+                yield line.encode(encoding)
             except UnicodeEncodeError:
-                raise Exception('Could not encode {!r} using "latin_1"'.format(line))
+                raise Exception('Could not encode {!r} using {!r}'.format(line, encoding))
 
     reader = csv.reader(encoder(), **kwargs)
     for row in reader:
-        yield [cell.decode('latin_1') for cell in row]
+        yield [cell.decode(encoding) for cell in row]
 
 
 class BroadbandCoverageInfo(object):
