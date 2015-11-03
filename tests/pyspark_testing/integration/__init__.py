@@ -41,7 +41,7 @@ class PySparkIntegrationTest(unittest.TestCase):
     def setUpClass(cls):
         if not hasattr(cls, 'sc'):
             spark_home = os.environ['SPARK_HOME']
-            build_zip = here('../../../dist/pyspark_testing-{}.tar.gz'.format(version))
+            build_zip = here('../../../dist/pyspark_testing-{}-py2.7.egg'.format(version))
             app_name = '{} Tests'.format(cls.__name__)
             cls.sc = initialize_pyspark(spark_home, app_name, [build_zip])
             log.debug('SparkContext initialized on %s', cls.__name__)

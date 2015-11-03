@@ -3,3 +3,5 @@ pyspark_testing.egg-info/
 .python-version
 *.pyc
 dist/
+build/
+.DS_Store
