@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-python setup.py clean
-python setup.py bdist_egg
+python setup.py clean bdist_egg
 nosetests "$@"
