@@ -16,6 +16,10 @@ from pyspark_testing.models import BroadbandCoverageInfo
 
 
 def data_path():
+    '''
+    Return absolute path to the data file contained in the pyspark_testing
+    package.
+    '''
     resource_path = os.path.join('data', 'National_Broadband_Data_March2012_Eng.csv.gz')
     return pkg_resources.resource_filename('pyspark_testing', resource_path)
 
@@ -30,9 +34,12 @@ def top_unserved(data, n=10):
 
 
 def summary_stats(data):
-    def stats_gen(d):
+    '''
+    Returns a dict of availability stats by connection type
+    '''
+    def stats_gen(datum):
         for k in ('dsl', 'wireless', 'broadband'):
-            if getattr(d, '{}_available'.format(k)):
+            if getattr(datum, '{}_available'.format(k)):
                 yield ('{}_available'.format(k), 1)
             else:
                 yield ('{}_unavailable'.format(k), 1)
@@ -50,7 +57,6 @@ def main():
                 .map(BroadbandCoverageInfo.from_csv_line))
 
         pprint.pprint(data.first())
-        # BroadbandCoverageInfo(hexagon_number=40930, gsa_number=None, first_nation=None, location_name=u'Aalders Landing, NS @ 44.82\xef\xbf\xbdN x 64.94\xef\xbf\xbdW', municipality=u'Annapolis, Subd. D :SC', latitude=44.82, longitude=-64.94, population=154, unserved=0, is_deferral_account=False, dsl_available=False, broadband_available=False, wireless_available=True)
 
         # What are the top 10 largest that don't have broadband connections?
         pprint.pprint(top_unserved(data))

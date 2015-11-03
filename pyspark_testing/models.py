@@ -1,6 +1,4 @@
 import csv
-import cStringIO as StringIO
-import itertools
 
 
 def safe_convert(string):
@@ -31,7 +29,8 @@ def unicode_csv_reader(unicode_csv_data, encoding='latin_1', **kwargs):
             try:
                 yield line.encode(encoding)
             except UnicodeEncodeError:
-                raise Exception('Could not encode {!r} using {!r}'.format(line, encoding))
+                raise Exception('Could not encode {!r} using {!r}'
+                                .format(line, encoding))
 
     reader = csv.reader(encoder(), **kwargs)
     for row in reader:
@@ -40,7 +39,6 @@ def unicode_csv_reader(unicode_csv_data, encoding='latin_1', **kwargs):
 
 class BroadbandCoverageInfo(object):
     __slots__ = (
-        # "Hexagon Number","GSA Number","First Nation","Location Name","Municipality","Latitude","Longitude","Total Population 2006 Census","Unserved / Underserved Population in Hexagon","Deferral Account","DSL Available","Cable Available","Wireless Available"
         'hexagon_number',        # Hexagon identifier (49,999 in total)
         'gsa_number',            # Geographic Service Area
         'first_nation',          # Name of first nations reserve
